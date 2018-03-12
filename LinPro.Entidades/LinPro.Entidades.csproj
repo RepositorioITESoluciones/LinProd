@@ -92,6 +92,7 @@
     <Compile Include="TiposMedidores.cs" />
     <Compile Include="TiposSensores.cs" />
     <Compile Include="UnidadesMedida.cs" />
+    <Compile Include="Usuario.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="bin\Debug\Transact.Entidades.dll" />

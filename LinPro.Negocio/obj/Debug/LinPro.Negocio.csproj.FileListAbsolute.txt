@@ -54,3 +54,14 @@ C:\inetpub\wwwroot\LineaProduccion\LinPro.Negocio\bin\Debug\LinPro.Framework.pdb
 C:\inetpub\wwwroot\LineaProduccion\LinPro.Negocio\obj\Debug\LinPro.Negocio.csprojResolveAssemblyReference.cache
 C:\inetpub\wwwroot\LineaProduccion\LinPro.Negocio\obj\Debug\LinPro.Negocio.dll
 C:\inetpub\wwwroot\LineaProduccion\LinPro.Negocio\obj\Debug\LinPro.Negocio.pdb
+C:\Users\carlos.garcia\Documents\GitHub\LinProd\LinPro.Negocio\bin\Debug\LinPro.Negocio.dll
+C:\Users\carlos.garcia\Documents\GitHub\LinProd\LinPro.Negocio\bin\Debug\LinPro.Negocio.pdb
+C:\Users\carlos.garcia\Documents\GitHub\LinProd\LinPro.Negocio\bin\Debug\LinPro.Datos.dll
+C:\Users\carlos.garcia\Documents\GitHub\LinProd\LinPro.Negocio\bin\Debug\LinPro.Entidades.dll
+C:\Users\carlos.garcia\Documents\GitHub\LinProd\LinPro.Negocio\bin\Debug\LinPro.Framework.dll
+C:\Users\carlos.garcia\Documents\GitHub\LinProd\LinPro.Negocio\bin\Debug\LinPro.Datos.pdb
+C:\Users\carlos.garcia\Documents\GitHub\LinProd\LinPro.Negocio\bin\Debug\LinPro.Entidades.pdb
+C:\Users\carlos.garcia\Documents\GitHub\LinProd\LinPro.Negocio\bin\Debug\LinPro.Framework.pdb
+C:\Users\carlos.garcia\Documents\GitHub\LinProd\LinPro.Negocio\obj\Debug\LinPro.Negocio.csprojResolveAssemblyReference.cache
+C:\Users\carlos.garcia\Documents\GitHub\LinProd\LinPro.Negocio\obj\Debug\LinPro.Negocio.dll
+C:\Users\carlos.garcia\Documents\GitHub\LinProd\LinPro.Negocio\obj\Debug\LinPro.Negocio.pdb

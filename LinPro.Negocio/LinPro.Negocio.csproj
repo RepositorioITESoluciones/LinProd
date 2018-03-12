@@ -48,6 +48,7 @@
     <Compile Include="NegocioEnergiaXEquipos.cs" />
     <Compile Include="NegocioGirosEmpresariales.cs" />
     <Compile Include="NegocioIndicadoresMejora.cs" />
+    <Compile Include="NegocioLogin.cs" />
     <Compile Include="NegocioMantenimientoEquipos.cs" />
     <Compile Include="NegocioMaquinariaDispositivoMedicion.cs" />
     <Compile Include="NegocioMaquinas.cs" />

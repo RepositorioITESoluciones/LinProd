@@ -28,6 +28,7 @@ public class WSLinPro : System.Web.Services.WebService
     readonly DatosMaquinariaDispositivosMedicion metodosMaquinariaDispositivosMedicion = new DatosMaquinariaDispositivosMedicion();
     readonly NegocioCrud metodosNegocio = new NegocioCrud();
     readonly NegocioCalculoProduccion metodosCalculoProduccion = new NegocioCalculoProduccion();
+    readonly NegocioLogin login = new NegocioLogin();
 
     #region EjemploCrud
     readonly NegocioMaquinariaDispositivoMedicion metodosNegocioMaquinariaDispositivoMedicion = new NegocioMaquinariaDispositivoMedicion();
@@ -101,6 +102,15 @@ public class WSLinPro : System.Web.Services.WebService
 
     }
 
+
+    #endregion
+
+    #region Inicio Sesión
+
+    [WebMethod]
+    public String AccesoDatos(String usuario, String contrasena) {
+        return login.ObtieneUsuarios(usuario, contrasena);
+    }
 
     #endregion
 

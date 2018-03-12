@@ -44,3 +44,12 @@ C:\inetpub\wwwroot\LineaProduccion\LinPro.Datos\bin\Debug\LinPro.Framework.pdb
 C:\inetpub\wwwroot\LineaProduccion\LinPro.Datos\obj\Debug\LinPro.Datos.csprojResolveAssemblyReference.cache
 C:\inetpub\wwwroot\LineaProduccion\LinPro.Datos\obj\Debug\LinPro.Datos.dll
 C:\inetpub\wwwroot\LineaProduccion\LinPro.Datos\obj\Debug\LinPro.Datos.pdb
+C:\Users\carlos.garcia\Documents\GitHub\LinProd\LinPro.Datos\bin\Debug\LinPro.Datos.dll
+C:\Users\carlos.garcia\Documents\GitHub\LinProd\LinPro.Datos\bin\Debug\LinPro.Datos.pdb
+C:\Users\carlos.garcia\Documents\GitHub\LinProd\LinPro.Datos\bin\Debug\LinPro.Entidades.dll
+C:\Users\carlos.garcia\Documents\GitHub\LinProd\LinPro.Datos\bin\Debug\LinPro.Framework.dll
+C:\Users\carlos.garcia\Documents\GitHub\LinProd\LinPro.Datos\bin\Debug\LinPro.Entidades.pdb
+C:\Users\carlos.garcia\Documents\GitHub\LinProd\LinPro.Datos\bin\Debug\LinPro.Framework.pdb
+C:\Users\carlos.garcia\Documents\GitHub\LinProd\LinPro.Datos\obj\Debug\LinPro.Datos.csprojResolveAssemblyReference.cache
+C:\Users\carlos.garcia\Documents\GitHub\LinProd\LinPro.Datos\obj\Debug\LinPro.Datos.dll
+C:\Users\carlos.garcia\Documents\GitHub\LinProd\LinPro.Datos\obj\Debug\LinPro.Datos.pdb

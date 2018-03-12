@@ -1,0 +1,129 @@
+﻿﻿/* ***** BOTONES ***** */
+
+/* Btn Verde */
+.btn-success{
+    background-color: #28a745 !important;
+    border-color: #28a745 !important;
+    transition: 0.5s;
+}
+.btn-success:hover {
+    color: #fff;
+    background-color: #218838 !important;
+    border-color: #1e7e34 !important;
+}
+
+/* Btn Azul */
+.btn-primary {
+    background-color: #007bff !important;
+    border-color: #007bff !important;
+    transition: 0.5s;
+}
+.btn-primary:hover {
+    color: #fff;
+    background-color: #0069d9 !important;
+    border-color: #0062cc !important;
+}
+
+/* Btn Rojo */
+.btn-danger {
+    background-color: #dc3545 !important;
+    border-color: #dc3545 !important;
+    transition: 0.5s;
+}
+.btn-danger:hover {
+    color: #fff;
+    background-color: #c82333 !important;
+    border-color: #bd2130 !important;
+}
+
+/* Btn Amarillo */
+.btn-warning {
+    background-color: #ffc107 !important;
+    border-color: #ffc107 !important;
+    transition: 0.5s;
+}
+.btn-warning:hover {
+    background-color: #e0a800 !important;
+    border-color: #d39e00 !important;
+}
+
+/* ***** TEXTO ***** */
+
+/* Texto verde */
+.text-success { color: #28a745 !important; }
+/* Texto azul */
+.text-primary { color: #007bff !important; }
+/* Texto rojo */
+.text-danger { color: #dc3545 !important; }
+/* Texto amarillo */
+.text-warning { color: #ffc107 !important; }
+/* Texto blanco */
+.text-white { color: #fff !important; }
+
+/* ***** VALIDACIONES ***** */
+
+/* Texto */
+.has-error input[type=text] {
+    border-color: #b94a48 !important;
+    background: #fff0f0 !important;
+}
+.has-success input[type=text] {
+    border-color: #7DC27D !important;
+    background: #f0fff0 !important;
+}
+
+/* Contraseña */
+.has-error input[type=password], .has-error input[type=text] {
+    border-color: #b94a48 !important;
+    background: #fff0f0 !important;
+}
+.has-success input[type=password], .has-succes input[type=text] {
+    border-color: #7DC27D !important;
+    background: #f0fff0 !important;
+}
+
+/* Select */
+.has-success .form-control {
+    border-color: #7DC27D !important;
+    background-color: #f0fff0 !important;
+}
+
+.has-error .form-control {
+    border-color: #b94a48 !important;
+    background: #fff0f0 !important;
+}
+
+/* Date */
+.has-success input[type=date] {
+    border-color: #7DC27D !important;
+    background-color: #f0fff0 !important;
+}
+.has-error input[type=date] {
+    border-color: #b94a48 !important;
+    background: #fff0f0 !important;
+}
+
+/* Footer */
+.footer {
+    position: fixed;
+    left: 0px;
+    bottom: 0px;
+    height: 60px;
+    width: 100%;
+    background-color: rgba(0, 0, 0, .7);
+    color: #fff;
+}
+
+a:HOVER {
+    color: #FE9608;
+}
+
+a {
+    transition: .9s;
+    color: #003497;
+    font-weight: bold;
+}
+
+.footerPharagraph {
+    margin-top: 10px;
+}

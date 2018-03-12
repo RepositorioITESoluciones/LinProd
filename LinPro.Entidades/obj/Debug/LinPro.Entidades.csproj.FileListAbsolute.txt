@@ -24,3 +24,8 @@ C:\inetpub\wwwroot\LineaProduccion\LinPro.Entidades\bin\Debug\LinPro.Entidades.p
 C:\inetpub\wwwroot\LineaProduccion\LinPro.Entidades\obj\Debug\LinPro.Entidades.csprojResolveAssemblyReference.cache
 C:\inetpub\wwwroot\LineaProduccion\LinPro.Entidades\obj\Debug\LinPro.Entidades.dll
 C:\inetpub\wwwroot\LineaProduccion\LinPro.Entidades\obj\Debug\LinPro.Entidades.pdb
+C:\Users\carlos.garcia\Documents\GitHub\LinProd\LinPro.Entidades\bin\Debug\LinPro.Entidades.dll
+C:\Users\carlos.garcia\Documents\GitHub\LinProd\LinPro.Entidades\bin\Debug\LinPro.Entidades.pdb
+C:\Users\carlos.garcia\Documents\GitHub\LinProd\LinPro.Entidades\obj\Debug\LinPro.Entidades.csprojResolveAssemblyReference.cache
+C:\Users\carlos.garcia\Documents\GitHub\LinProd\LinPro.Entidades\obj\Debug\LinPro.Entidades.dll
+C:\Users\carlos.garcia\Documents\GitHub\LinProd\LinPro.Entidades\obj\Debug\LinPro.Entidades.pdb
