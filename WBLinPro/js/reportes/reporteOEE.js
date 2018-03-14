@@ -42,17 +42,20 @@ function initDataTableOEE() {
     var datos = [];
 
     $('#btnbuscar').click(function () {
+        var fechaI = $('#FechaInicio').val();
+        var fechaF = $('#FechaFin').val();
+        var combo = $('#ComboDepar').val();
+
         $('#detalleOEE').empty();
         var valido;
         datos = [];
         valido = validateForm();
-        console.log(valido);
         if (valido) {
             $.ajax({
                 async: false,
                 type: 'POST',
                 url: 'WSLinPro.asmx/llenaReporteOEEDepartamento',
-                data: "{'FechaInicio':'" + $('#FechaInicio').val() + "','FechaFin':'" + $('#FechaFin').val() + "','ComboDepar':'" + $('#ComboDepar').val() + "'}",
+                data: "{'FechaInicio':'" + fechaI + "','FechaFin':'" + fechaF + "','ComboDepar':'" + combo + "'}",
                 dataType: 'json',
                 contentType: 'application/json; charset=utf-8',
                 success: function (response) {
@@ -63,6 +66,12 @@ function initDataTableOEE() {
                             datos.push([arr.FechaCorta, arr.departamento.nombreDepartamento, arr.Porcentaje]);
                         });
                     });
+                    if (datos.length == 0) {
+                        showWarningMessage('Advertencia', 'No existen datos con los valores ingresados.');
+                    } else {
+                        showOkMessage('Información', 'Se mostrará una tabla y gráfia con los detalles.');
+                    }
+
                 }
             });
             //$('#tablasReportes').show();

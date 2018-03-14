@@ -17,3 +17,7 @@
  * - BODY
  * - CUSTOM STYLES
  */
+
+input[type="text"], input[type="datetime"] {
+    padding-left: 4px;
+}

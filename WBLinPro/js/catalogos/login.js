@@ -10,6 +10,11 @@ function init() {
         $('#form_login').data('bootstrapValidator').validate();
         var n = $('#form_login').data('bootstrapValidator').isValid();
         if (n) {
+            var $this = $(this);
+            $this.button('loading');
+            setTimeout(function () {
+                $this.button('reset');
+            }, 1000);
             acceder();
         } else {
             bootsVal();
@@ -112,7 +117,7 @@ function showOkMessage(titulo, mensaje) {
         content: mensaje,
         color: "#296191",
         timeout: 4000,
-        icon: "fa fa-thumbs-o-up swing animated"
+        icon: "fa fa-check swing animated"
     });
 }
 

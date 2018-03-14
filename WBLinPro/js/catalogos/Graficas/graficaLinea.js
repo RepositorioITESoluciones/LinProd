@@ -75,7 +75,13 @@ function initGraficaLineas() {
                                 value: item1.Porcentaje
                             })
 
+
                         });
+                        if (chartData.length == 0) {
+                            showWarningMessage('Advertencia', 'No existen datos con los valores ingresados.');
+                        } else {
+                            showOkMessage('Información', 'Se mostrará una tabla y gráfia con los detalles.');
+                        }
                     });
 
                 }
