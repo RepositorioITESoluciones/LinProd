@@ -63,6 +63,11 @@ function initDataTableMantenimiento() {
                             ]);
                         });
                     });
+                    if (datos.length == 0) {
+                        showWarningMessage('Advertencia', 'No existen datos con los valores ingresados.');
+                    } else {
+                        showOkMessage('Información', 'Se mostrará una tabla y gráfia con los detalles.');
+                    }
                 }
             });
             //$('#tablasReportes').show();

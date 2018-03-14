@@ -63,6 +63,11 @@ function initDataTableCostos() {
                             datos.push([arr.fecha, arr.maquina.Descripcion, arr.piezasProducidas, arr.costoPza, arr.eficiencia]);
                         });
                     });
+                    if (datos.length == 0) {
+                        showWarningMessage('Advertencia', 'No existen datos con los valores ingresados.');
+                    } else {
+                        showOkMessage('Información', 'Se mostrará una tabla y gráfia con los detalles.');
+                    }
                 }
             });
             //$('#tablasReportes').show();
