@@ -1,130 +1,125 @@
 ﻿$(function () {
-    initEventos();
-    initDataTable();
+    $("#FormularioAlta").hide()
+        initDataTable();
     
 });
 
-function initEventos() {
-    $('#btnPlus').click(function () {
-        var row = $("#detalleArea").DataTable().row('.selected').data();
-        if (row) {
-            $('#detalleArea').DataTable().$('tr.selected').removeClass('selected');
-        }
-        limpiaDivs();
-        validateForm();
-        $('#FormArea').data('bootstrapValidator').resetForm();
-        document.getElementById("FormArea").reset();
-        llenaComboSucursal();
-        $('#divTiposTransaccion').hide();
-        $('#FormularioAlta').show();
-        $("#tituloOperacion").html('Crear Área');
-    });
-
-    $('#btnAtras').click(function () {
-        $('#FormArea').data('bootstrapValidator').resetForm();
-        document.getElementById("FormArea").reset();
-        limpiaDivs();
-        $('#divTiposTransaccion').show();
-        $('#FormularioAlta').hide();
-    });
-
-    $('#btnguardar').click(function () {
-        var row = $("#detalleArea").DataTable().row('.selected').data();
-        var formData = new FormData(document.getElementById('FormArea'));
-        if (row) {
-            editArea();
-        } else {
-            var sucursales = new Array();
-            var valido = validateForm();
-            if (valido) {
+$('#btnPlus').click(function () {
+    var row = $("#detalleArea").DataTable().row('.selected').data();
+    if (row) {
+        $('#detalleArea').DataTable().$('tr.selected').removeClass('selected');
+    }
+    limpiaDivs();
+    validateForm();
+    $('#FormArea').data('bootstrapValidator').resetForm();
+    document.getElementById("FormArea").reset();
+    llenaComboSucursal();
+    llenaComboDptos();
+    $("#FormularioAlta").removeClass("hidden");
+    $('#fprincipal').toggle("swing");
+    $('#FormularioAlta').toggle("swing");
+});
+$('#btnAtras').click(function () {
+    $('#FormArea').data('bootstrapValidator').resetForm();
+    document.getElementById("FormArea").reset();
+    limpiaDivs();
+    $('#fprincipal').toggle("swing");
+    $('#FormularioAlta').toggle("swing");
+});
+$('#btnguardar').click(function () {
+    var row = $("#detalleArea").DataTable().row('.selected').data();
+    var formData = new FormData(document.getElementById('FormArea'));
+    if (row) {
+        editArea();
+    } else {
+        var sucursales = new Array();
+        var valido = validateForm();
+        if (valido) {
             $("input[name='sucursal']").each(function (index, item) {
                 if ($("input[name='sucursal']:eq(" + index + ")").is(':checked')) {
                     sucursales.push(parseInt($(this).val()));
                 }
-                
+
             });
             var parameters = {
                 area: $("#area").val(),
                 descripcion: $("#descripcion").val(),
                 sucursales: sucursales
             };
-                $.ajax({
-                    async: false,
-                    type: 'POST',
-                    url: 'WSLinPro.asmx/insertaAreaWs',
-                    data: JSON.stringify(parameters), 
-                    contentType: "application/json; charset=utf-8",
-                    dataType: "json",
-                    success: function (response) {
-                        $.smallBox({
-                            title: "Éxito!",
-                            content: "Area <b>" + $('#area').val() + "</b> agregada",
-                            color: "#739e73",
-                            timeout: 2000,
-                            icon: "fa fa-thumbs-up swing animated"
-                        });
-                        llenaDataTable();
-                    }
-                });
-                $('#FormArea').data('bootstrapValidator').resetForm();
-                $('#divTiposTransaccion').show();
-                $('#FormularioAlta').hide();
-            } else {
-                $('#divTiposTransaccion').hide();
-                $('#FormularioAlta').show();
-            }
-        }
-    });
-
-    $("#btnEdit").click(function () {
-        limpiaDivs();
-        var row = $("#detalleArea").DataTable().row('.selected').data();
-        if (row) {
-            setObject(row);
+            $.ajax({
+                async: false,
+                type: 'POST',
+                url: 'WSLinPro.asmx/insertaAreaWs',
+                data: JSON.stringify(parameters),
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (response) {
+                    $.smallBox({
+                        title: "Éxito!",
+                        content: "Area <b>" + $('#area').val() + "</b> agregada",
+                        color: "#739e73",
+                        timeout: 2000,
+                        icon: "fa fa-thumbs-up swing animated"
+                    });
+                    llenaDataTable();
+                }
+            });
+            $('#FormArea').data('bootstrapValidator').resetForm();
+            $('#divTiposTransaccion').show();
+            $('#FormularioAlta').hide();
+        } else {
             $('#divTiposTransaccion').hide();
             $('#FormularioAlta').show();
-            $("#tituloOperacion").html('Editar Área');
-        } else {
-            showWarningMessage('Información </b>', '<i>Debe seleccionar un elemento</i>');
         }
-        })
-
-        $("#btnDelete").click(function () {
-            var row = $('#detalleArea').DataTable().row('.selected').data();
-            if (row) {
-                var idArea = row[0];
-                $.SmartMessageBox({
-                    title: "¿Desea <font color='#ff9100'><b>eliminar</b></font> el area <b>" + row[1] + "</b>?",
-                    content: "Una vez eliminada la Transacción no podras volver acceder a ella.",
-                    buttons: '[No][Si]'
-                }, function (ButtonPressed) {
-                    if (ButtonPressed === "Si") {
-                        $.ajax({
-                            async: false,
-                            type: "POST",
-                            url: 'WSLinPro.asmx/eliminarAreaWs',
-                            data: JSON.stringify({ idArea: row[0] }),
-                            contentType: "application/json; charset=utf-8",
-                            dataType: "json",
-                            success: function (output) {
-                                $.each(output, function (j, cam) {
-                                    showOkMessage('Transacción Eliminada', 'Se ha Eliminado la Transacción <b>' + row[1] + '<b>');
-                                    llenaDataTable();
-                                });
-                            },
-                            error: function (e) {
-                                console.log("error");
-                            }
+    }
+});
+$("#btnEdit").click(function () {
+    limpiaDivs();
+    var row = $("#detalleArea").DataTable().row('.selected').data();
+    if (row) {
+        setObject(row);
+        $('#divTiposTransaccion').hide();
+        $('#FormularioAlta').show();
+        $("#tituloOperacion").html('Editar Área');
+    } else {
+        showWarningMessage('Información </b>', '<i>Debe seleccionar un elemento</i>');
+    }
+});
+$("#btnDelete").click(function () {
+    var row = $('#detalleArea').DataTable().row('.selected').data();
+    if (row) {
+        var idArea = row[0];
+        $.SmartMessageBox({
+            title: "¿Desea <font color='#ff9100'><b>eliminar</b></font> el area <b>" + row[1] + "</b>?",
+            content: "Una vez eliminada la Transacción no podras volver acceder a ella.",
+            buttons: '[No][Si]'
+        }, function (ButtonPressed) {
+            if (ButtonPressed === "Si") {
+                $.ajax({
+                    async: false,
+                    type: "POST",
+                    url: 'WSLinPro.asmx/eliminarAreaWs',
+                    data: JSON.stringify({ idArea: row[0] }),
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: function (output) {
+                        $.each(output, function (j, cam) {
+                            showOkMessage('Transacción Eliminada', 'Se ha Eliminado la Transacción <b>' + row[1] + '<b>');
+                            llenaDataTable();
                         });
-                    } else {
-                        $('#bot1-Msg1').prop('disabled', true);
+                    },
+                    error: function (e) {
+                        console.log("error");
                     }
                 });
             } else {
-                showWarningMessage('Información </b>', '<i>Debe seleccionar un elemento</i>');
+                $('#bot1-Msg1').prop('disabled', true);
             }
-        })
-}
+        });
+    } else {
+        showWarningMessage('Información </b>', '<i>Debe seleccionar un elemento</i>');
+    }
+});
 
 function setObject(row) {
     $("#idArea").val(row[0]);
@@ -275,33 +270,57 @@ function llenaComboSucursal() {
         contentType: 'application/json; charset=utf-8',
         success: function (dataList) {
             if (!jQuery.isEmptyObject(dataList)) {
-                $.each(dataList, function (index, list) {
-                    var id;
-                    numDivs = list.ListaRegistrosSucursal.length / 8;
-                    for (var i = 1; i <= numDivs; i++) {
-                        id = i * 8;
-                        divs += '<div id="' + id + '" class="divSuc col-2" style="display:inline-block; "></div>';
-                    }
-                    if (!list.ListaRegistrosSucursal.length % 8 === 0) {
-                        divs += '<div id="' + (parseInt(id) + 8) + '" class="divSuc col-2" style="display:inline-block;"></div>';
-                    }
-                    $("#sucursales").html(divs);
-                    var lastIndx = 0;
-                    var contador = 0;
-                    $.each($("div[class='divSuc col-2']"), function (index, item) {
-                        var divId = item.id;
-                        var suc = "";
-                        $.each(list.ListaRegistrosSucursal, function (index, item) {
-                            if (index < divId && index >= lastIndx) {
-                                suc += '<input type="checkbox" value="' + item.idSucursal + '" name=sucursal>' + item.nombre + '</input><br>';
-                                contador = contador + 1;
-                            }
-                            lastIndx = contador;
-                        });
-                        $("#" + divId).html(suc);
+                console.log(dataList);
+
+                $.each(dataList, function (registro, row1) {
+                    $.each(row1.ListaRegistrosSucursal, function (i1, r1) {
+                        html += '<li style="display:none">';
+                        html += '<span>';
+                        html += '<label class="checkbox inline-block">';
+                        html += '<input type="checkbox" name="checkbox-inline" value="' + r1.idSucursal + '">';
+                        html += '<i></i>';
+                        html += r1.nombre;
+                        html += '</label>';
+                        html += '</span>';
+                        html += '</li>';
                     });
                 });
             }
+
+            $("#_sucursales").html(html);
+        }
+    });
+}
+function llenaComboDptos() {
+    var html = "";
+    var numDivs;
+    var divs = "";
+    $.ajax({
+        async: false,
+        type: 'POST',
+        url: 'WSLinPro.asmx/LlenaComboDptos',
+        dataType: 'json',
+        contentType: 'application/json; charset=utf-8',
+        success: function (dataList) {
+            if (!jQuery.isEmptyObject(dataList)) {
+                console.log(dataList);
+
+                $.each(dataList, function (registro, row1) {
+                    $.each(row1.ListaRegistros, function (i1, r1) {
+                        html += '<li style="display:none">';
+                        html += '<span>';
+                        html += '<label class="checkbox inline-block">';
+                        html += '<input type="checkbox" name="checkbox-inline" value="' + r1.idDepartamento + '">';
+                        html += '<i></i>';
+                        html += r1.nombreDepartamento;
+                        html += '</label>';
+                        html += '</span>';
+                        html += '</li>';
+                    });
+                });
+            }
+
+            $("#dptos").html(html);
         }
     });
 }
@@ -410,7 +429,7 @@ function validateForm() {
         fields: {
             area: {
                 selector: '#area',
-                group: '.form-group',
+                group: '.col-6',
                 validators: {
                     notEmpty: {
                         message: 'El nombre del área es requerido'
@@ -423,7 +442,7 @@ function validateForm() {
             },
             descripcion: {
                 selector: '#descripcion',
-                group: '.form-group',
+                group: '.col-6',
                 validators: {
                     notEmpty: {
                         message: 'La descripción del área es requerida'

@@ -10,6 +10,6 @@ namespace LinPro.Entidades {
         public int idDepartamento { get; set; }
         public string nombreDepartamento { get; set; }
         public string descripcionDepartamento { get; set; }
-
+        public int idArea { get; set; }
     }
 }
