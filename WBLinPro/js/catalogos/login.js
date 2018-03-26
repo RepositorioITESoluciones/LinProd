@@ -14,8 +14,9 @@ function init() {
             $this.button('loading');
             setTimeout(function () {
                 $this.button('reset');
+                acceder();
             }, 1000);
-            acceder();
+            
         } else {
             bootsVal();
         }

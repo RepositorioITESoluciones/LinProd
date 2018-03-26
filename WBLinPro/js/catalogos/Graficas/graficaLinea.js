@@ -1,5 +1,5 @@
 ﻿$(function () {
-
+    $("#tabla").hide();
     $('#FechaInicio').datetimepicker({
         format: 'YYYY/MM/DD',
         //  locale: 'es',
@@ -7,8 +7,21 @@
         maxDate: 'now'
     });
 
+    $('#dtTable').DataTable({
+        dom: 'Bfrtip',
+        buttons: [
+           'excel', 'pdf'
+        ]
+    });
+
     initGraficaLineas();
 });
+
+// *****
+// Init DataTable
+// Cosulta a la base y crea dinamicamente
+// la tabla con registros obtenidos.
+// *****
 
 
 $('#FechaInicio').on('dp.change', function (e) {
@@ -30,32 +43,21 @@ $('#FechaInicio').on('dp.change', function (e) {
 
 
 function initGraficaLineas() {
-
+    var datos = [];
     $('#FormReporte').show();
-  //  $('#GraficaPastel').hide();
-
-    
 
     $('#btnbuscar').click(function () {
+
         $('#detalleEnergia').empty();
+        var idTabla = 1;
         var valido;
         var chartData = [];
         valido = validateForm();
-        console.log(valido);
-        console.log($('#FechaInicio').val());
         var fechaInicio = $('#FechaInicio').val();
         var fechaFin = $('#FechaFin').val();
-        //var fechaInicioauxiliar = $('#FechaInicio').val().split("/");
-        //var fechaInicio = fechaInicioauxiliar[2] + "/" + fechaInicioauxiliar[0] + "/" + fechaInicioauxiliar[1];
-        //var fechaInicioauxiliars = $('#FechaFin').val().split("/");
-        //var fechaFin = fechaInicioauxiliars[2] + "/" + fechaInicioauxiliars[0] + "/" + fechaInicioauxiliars[1];
 
-        console.log('Fecha inicio');
-        console.log(fechaInicio);
-        console.log('Fecha fin');
-        console.log(fechaFin);
         if (valido) {
-            console.log('entre a ajax');
+
             $.ajax({
                 async: false,
                 type: 'POST',
@@ -64,19 +66,22 @@ function initGraficaLineas() {
                 data: "{'fechaInicio':'" + fechaInicio + "','fechaFin':'" + fechaFin + "'}",
                 contentType: 'application/json; charset=utf-8',
                 success: function (data) {
-                    //los datos obtenidos econsole.log(data);n jason del controlador
-                    console.log(data);
                     $.each(data, function (index, item) {
                         $.each(item.ListaRegistros, function (index1, item1) {
-                            console.log(item1.fechas + '----------' + item1.Porcentaje)
+                            //console.log(item1.fechas + '----------' + item1.Porcentaje)
                             chartData.push({
                                 name: item1.FechaCorta,
                                 name2: item1.fechas,
                                 value: item1.Porcentaje
-                            })
+                            });
 
+                            datos.push([idTabla, item1.Porcentaje, item1.FechaCorta]);
+                            idTabla++;
 
                         });
+
+                        console.log(datos);
+
                         if (chartData.length == 0) {
                             showWarningMessage('Advertencia', 'No existen datos con los valores ingresados.');
                         } else {
@@ -145,26 +150,43 @@ function initGraficaLineas() {
             if (chart.zoomChart) {
                 chart.zoomChart();
             }
-
             function zoomChart() {
                 chart.zoomToIndexes(Math.round(chart.dataProvider.length * 0.4), Math.round(chart.dataProvider.length * 0.55));
             }
-
-
             $('#FormParametros').data('bootstrapValidator').resetForm();
-         //   $('#GraficaPastel').show();
-            // $('#FormParametros').hide();
-            // llenaDataTable();
-        }
-        else {
-            //            $('#FormParametros').data('bootstrapValidator').resetForm();
-           // $('#GraficaPastel').hide();
+        } else {
             $('#FormParametros').show();
         }
 
+        table = $('#dtTable').DataTable({
+            "aLengthMenu": [
+                [5, 10, 25, 50],
+                [5, 10, 25, 50]
+            ],
+            "oLanguage": {
+                "sUrl": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json"
+            },
+            data: datos,
+            columns: [
+                {
+                    title: "#"
+                },
+                {
+                    title: "Porcentaje"
+                }, {
+                    title: "Periodo"
+                }
+            ]
+        });
+        table.clear();
+        table.rows.add(datos);
+        table.draw();
+        $("#tabla").fadeIn();
     });
 }
 
+
+// Validación formulario
 function validateForm() {
     $("#FormParametros").bootstrapValidator({
         excluded: [':disabled'],
