@@ -58,11 +58,8 @@ namespace LinPro.Negocio
 
         public Sucursal LlenacomboSucursalNegocio()
         {
-            Sucursal listadatos;
 
-            listadatos = clasedatos.LlenaComboSucursal();
-
-            return listadatos;
+            return clasedatos.LlenaComboSucursal();
         }
 
         public Sucursal getidSucursalesByArea(int idArea)
@@ -71,6 +68,11 @@ namespace LinPro.Negocio
             listaSucursales = clasedatos.getidSucursalesByArea(idArea);
 
             return listaSucursales;
+        }
+
+        public Departamentos LlenaComboDptos()
+        {
+            return clasedatos.LlenaComboDptos();
         }
 
     }

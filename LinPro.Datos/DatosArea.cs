@@ -240,7 +240,49 @@ namespace LinPro.Datos
             }
             return listadatos;
 
-        } 
+        }
+
+        public Departamentos LlenaComboDptos()
+        {
+            Departamentos campos = new Departamentos();
+            DataTable dt = new DataTable();
+            List<CamposDepartamento> composList = new List<CamposDepartamento>();
+
+            SqlConnection connection = null;
+            try
+            {
+                using (connection = Conexion.ObtieneConexion("ConexionBD"))
+                {
+                    SqlDataReader consulta;
+                    connection.Open();
+                    consulta = Ejecuta.ConsultaConRetorno(connection, "Usp_CombDepartamento");
+                    dt.Load(consulta);
+                    connection.Close();
+                }
+
+
+                foreach (DataRow row in dt.Rows)
+                {
+                    CamposDepartamento reg = new CamposDepartamento();
+                    reg.idDepartamento = Convert.ToInt32(row["idDepartamento"].ToString());
+                    reg.nombreDepartamento = row["nombreDepartamento"].ToString();
+                    reg.descripcionDepartamento = row["descripcionDepartamento"].ToString();
+                    reg.idArea = Convert.ToInt32(row["idArea"].ToString());
+
+
+                    composList.Add(reg);
+                }
+                campos.ListaRegistros  = composList.ToArray();
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+            }
+
+            return campos;
+        }
+
 
 
     }

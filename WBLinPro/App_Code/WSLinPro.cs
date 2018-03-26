@@ -285,9 +285,12 @@ public class WSLinPro : System.Web.Services.WebService
     [WebMethod]
     public Sucursal LlenaComboSucursalWS()
     {
-        Sucursal listcampos;
-        listcampos = metodosArea.LlenacomboSucursalNegocio();
-        return listcampos;
+        return metodosArea.LlenacomboSucursalNegocio();
+    }
+    [WebMethod]
+    public Departamentos LlenaComboDptos()
+    {
+        return metodosArea.LlenaComboDptos();
     }
 
     [WebMethod]
